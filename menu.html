@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Argie Coffee - Menu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f8f8f8;
+}
+
+/* ================= HEADER ================= */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:700;
+    color:#006241;
+}
+
+nav a{
+    margin-left:20px;
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+/* ================= TITLE ================= */
+.page-title{
+    text-align:center;
+    margin:120px 0 20px;
+    color:#006241;
+}
+
+/* ================= SECTION TITLE ================= */
+.section-title{
+    padding:0 8%;
+    margin:40px 0 20px;
+    color:#006241;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* ================= MENU GRID ================= */
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:0 8%;
+}
+
+/* ================= CARD ================= */
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    color:#006241;
+    font-weight:700;
+}
+
+.btn{
+    background:#006241;
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* ================= CART ================= */
+.cart{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:320px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:13px;
+    margin:8px 0;
+    gap:10px;
+}
+
+.cart-controls button{
+    margin:0 2px;
+    padding:3px 7px;
+    border:none;
+    cursor:pointer;
+    border-radius:4px;
+}
+
+.qty-btn{ background:#ddd; }
+.small-btn{ background:red; color:white; }
+
+.total{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.checkout-btn{
+    width:100%;
+    margin-top:10px;
+    padding:8px;
+    background:#006241;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* ================= RECEIPT ================= */
+#receiptModal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.5);
+    justify-content:center;
+    align-items:center;
+}
+
+.receipt-box{
+    background:white;
+    padding:20px;
+    width:320px;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="logo">Argie Coffee</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<h1 class="page-title">Our Menu</h1>
+
+<!-- ================= COFFEE ================= -->
+<h2 class="section-title">☕ Coffee Drinks</h2>
+<section class="menu-grid">
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c">
+    <div class="card-content">
+        <h3>Caramel Latte</h3>
+        <p class="price">₱120</p>
+        <button class="btn" onclick="add('Caramel Latte',120)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+    <div class="card-content">
+        <h3>Cold Brew</h3>
+        <p class="price">₱110</p>
+        <button class="btn" onclick="add('Cold Brew',110)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://overtimecook.com/wp-content/uploads/2014/01/Skinny-Mocha-Frappe-3.jpg">
+    <div class="card-content">
+        <h3>Mocha Frappé</h3>
+        <p class="price">₱130</p>
+        <button class="btn" onclick="add('Mocha Frappé',130)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://myeverydaytable.com/wp-content/uploads/AmericanoHotandIced-3.jpg">
+    <div class="card-content">
+        <h3>Americano</h3>
+        <p class="price">₱95</p>
+        <button class="btn" onclick="add('Americano',95)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.sharmispassions.com/wp-content/uploads/2012/07/espresso-coffee-recipe04-500x500.jpg">
+    <div class="card-content">
+        <h3>Espresso</h3>
+        <p class="price">₱90</p>
+        <button class="btn" onclick="add('Espresso',90)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/flat-white-d8ada0f.jpg?quality=90&resize=440,400">
+    <div class="card-content">
+        <h3>Flat White</h3>
+        <p class="price">₱125</p>
+        <button class="btn" onclick="add('Flat White',125)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3">
+    <div class="card-content">
+        <h3>Macchiato</h3>
+        <p class="price">₱115</p>
+        <button class="btn" onclick="add('Macchiato',115)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.brighteyedbaker.com/wp-content/uploads/2024/03/Spanish-Iced-Latte.jpg">
+    <div class="card-content">
+        <h3>Iced Latte</h3>
+        <p class="price">₱120</p>
+        <button class="btn" onclick="add('Iced Latte',120)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.organizedisland.com/wp-content/uploads/2023/08/Easy-Vanilla-Latte-Recipe-Starbucks-Coffee-Copycat.jpg">
+    <div class="card-content">
+        <h3>Vanilla Latte</h3>
+        <p class="price">₱130</p>
+        <button class="btn" onclick="add('Vanilla Latte',130)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c">
+    <div class="card-content">
+        <h3>Caramel Macchiato</h3>
+        <p class="price">₱135</p>
+        <button class="btn" onclick="add('Caramel Macchiato',135)">Add</button>
+    </div>
+</div>
+
+</section>
+
+<h2 class="section-title">🍞 Bread & Pastries</h2>
+<section class="menu-grid">
+
+<div class="card">
+    <img src="https://lartizanph.com/cdn/shop/products/Croissant_2806x.jpg?v=1592278242">
+    <div class="card-content">
+        <h3>Butter Croissant</h3>
+        <p class="price">₱85</p>
+        <button class="btn" onclick="add('Butter Croissant',85)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://kirbiecravings.com/wp-content/uploads/2022/09/2-ingredient-chocolate-bread-6a.jpg">
+    <div class="card-content">
+        <h3>Chocolate Bread</h3>
+        <p class="price">₱90</p>
+        <button class="btn" onclick="add('Chocolate Bread',90)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvik53g-EVhCTof2ST7GohxegL3l_DkZZS7A&s">
+    <div class="card-content">
+        <h3>Garlic Bread</h3>
+        <p class="price">₱75</p>
+        <button class="btn" onclick="add('Garlic Bread',75)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.recipetineats.com/tachyon/2023/06/Cheese-bread-main-photos_7a.jpg">
+    <div class="card-content">
+        <h3>Cheese Bread</h3>
+        <p class="price">₱80</p>
+        <button class="btn" onclick="add('Cheese Bread',80)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.simplystacie.net/wp-content/uploads/2017/11/Banana-Cake-LOW-RES-39.jpg">
+    <div class="card-content">
+        <h3>Banana Bread</h3>
+        <p class="price">₱95</p>
+        <button class="btn" onclick="add('Banana Bread',95)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://cdn.loveandlemons.com/wp-content/uploads/2025/12/cinnamon-roll-recipe.jpg">
+    <div class="card-content">
+        <h3>Cinnamon Roll</h3>
+        <p class="price">₱100</p>
+        <button class="btn" onclick="add('Cinnamon Roll',100)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://tarasmulticulturaltable.com/wp-content/uploads/2015/06/Pandesal-Filipino-Bread-Rolls-6-of-8.jpg">
+    <div class="card-content">
+        <h3>Pandesal</h3>
+        <p class="price">₱50</p>
+        <button class="btn" onclick="add('Pandesal',50)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://www.womanscribbles.net/wp-content/uploads/2025/04/ensaymada-18-720x720.jpg">
+    <div class="card-content">
+        <h3>Ensaymada</h3>
+        <p class="price">₱70</p>
+        <button class="btn" onclick="add('Ensaymada',70)">Add</button>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://butterboyph.com/cdn/shop/products/IMG_5396_S.jpg?v=1623835183">
+    <div class="card-content">
+        <h3>Strawberry Danish</h3>
+        <p class="price">₱110</p>
+        <button class="btn" onclick="add('Strawberry Danish',110)">Add</button>
+    </div>
+</div>
+
+</section>
+
+<!-- ================= CART ================= -->
+<div class="cart">
+    <h3>🛒 Cart</h3>
+    <div id="cartList"></div>
+
+    <div class="total">
+        Total: ₱<span id="total">0</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
+
+<!-- ================= RECEIPT ================= -->
+<div id="receiptModal">
+    <div class="receipt-box">
+        <h2 style="color:#006241; text-align:center;">Argie Coffee</h2>
+        <p style="text-align:center;">OFFICIAL RECEIPT</p>
+        <hr>
+
+        <p><b>Order Code:</b> <span id="code"></span></p>
+        <p><b>Time:</b> <span id="time"></span></p>
+
+        <hr>
+        <div id="receiptItems"></div>
+        <hr>
+
+        <h3>Total: ₱<span id="receiptTotal"></span></h3>
+
+        <button class="checkout-btn" onclick="closeReceipt()">Close</button>
+    </div>
+</div>
+
+<script>
+
+let cart = [];
+
+function add(name, price){
+
+    let item = cart.find(i => i.name === name);
+
+    if(item){
+        item.qty++;
+    }else{
+        cart.push({name, price, qty:1});
+    }
+
+    render();
+}
+
+function increase(i){
+    cart[i].qty++;
+    render();
+}
+
+function decrease(i){
+    cart[i].qty--;
+    if(cart[i].qty <= 0) cart.splice(i,1);
+    render();
+}
+
+function removeItem(i){
+    cart.splice(i,1);
+    render();
+}
+
+function render(){
+
+    let list = document.getElementById("cartList");
+    let total = 0;
+
+    list.innerHTML = "";
+
+    cart.forEach((item,i)=>{
+
+        let sub = item.price * item.qty;
+        total += sub;
+
+        list.innerHTML += `
+        <div class="cart-item">
+            <div>
+                ${item.name}<br>
+                ₱${item.price} x ${item.qty} = ₱${sub}
+            </div>
+            <div class="cart-controls">
+                <button class="qty-btn" onclick="decrease(${i})">-</button>
+                <button class="qty-btn" onclick="increase(${i})">+</button>
+                <button class="small-btn" onclick="removeItem(${i})">X</button>
+            </div>
+        </div>`;
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+function checkout(){
+
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+
+    let total = 0;
+    let items = "";
+
+    cart.forEach(i=>{
+        let sub = i.price * i.qty;
+        total += sub;
+        items += `<p>${i.name} x${i.qty} = ₱${sub}</p>`;
+    });
+
+    document.getElementById("code").innerText = "AC-" + Math.floor(Math.random()*90000+10000);
+    document.getElementById("time").innerText = new Date().toLocaleTimeString();
+    document.getElementById("receiptItems").innerHTML = items;
+    document.getElementById("receiptTotal").innerText = total;
+
+    document.getElementById("receiptModal").style.display = "flex";
+
+    cart = [];
+    render();
+}
+
+function closeReceipt(){
+    document.getElementById("receiptModal").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
